@@ -35,9 +35,9 @@ var UUID = require('node-uuid');
     for (var i = 0; i<p.length; i++){
       if (p[i].indexOf('=') > -1){
         var segs = p[i].split('=');
-        
+
         out[segs[0]] = parseValue(segs.slice(1).join('='));
-        
+
       }
     }
     return out || sp
@@ -46,7 +46,7 @@ var UUID = require('node-uuid');
   var parseValue = function(val){
     if ('TRUE' === val)
       return true;
-    
+
     if ('FALSE' === val)
       return false;
 
@@ -244,7 +244,7 @@ var UUID = require('node-uuid');
             //scan all high level object in curr and drop all strings
             var key,
                 obj;
-            
+
             for (key in curr) {
                 if(curr.hasOwnProperty(key)) {
                    obj = curr[key];
@@ -253,10 +253,10 @@ var UUID = require('node-uuid');
                    }
                 }
             }
-            
+
             return curr
         }
-        
+
         var par = stack.pop()
         if (curr.uid)
         {
@@ -302,7 +302,7 @@ var UUID = require('node-uuid');
         		// TODO:  Is there ever a case where we have to worry about overwriting an existing entry here?
 
         		// Create a copy of the current object to save in our recurrences array.  (We *could* just do par = curr,
-        		// except for the case that we get the RECURRENCE-ID record before the RRULE record.  In that case, we 
+        		// except for the case that we get the RECURRENCE-ID record before the RRULE record.  In that case, we
         		// would end up with a shared reference that would cause us to overwrite *both* records at the point
 				// that we try and fix up the parent record.)
         		var recurrenceObj = new Object();
@@ -374,22 +374,20 @@ var UUID = require('node-uuid');
           name = name.substring(2);
           return (storeParam(name))(val, params, ctx, stack, line);
       }
-      
+
       return storeParam(name.toLowerCase())(val, params, ctx);
     },
 
-
-    parseICS : function(str){
+    parseLines : function(lines){
       var self = this
-      var lines = str.split(/\r?\n/)
       var ctx = {}
       var stack = []
 
-      for (var i = 0, ii = lines.length, l = lines[0]; i<ii; i++, l=lines[i]){
+      while (lines.length) {
+        l=lines.shift();
         //Unfold : RFC#3.1
-        while (lines[i+1] && /[ \t]/.test(lines[i+1][0])) {
-          l += lines[i+1].slice(1)
-          i += 1
+        while (lines[1] && /[ \t]/.test(lines[1][0])) {
+          l += lines.shift().slice(1)
         }
 
         var exp = /([^":;]+)((?:;(?:[^":;]+)(?:=(?:(?:"[^"]*")|(?:[^":;]+))))*):(.*)/;
@@ -408,11 +406,19 @@ var UUID = require('node-uuid');
         ctx = self.handleObject(name, value, params, ctx, stack, l) || {}
       }
 
-       // type and params are added to the list of items, get rid of them.
-       delete ctx.type
-       delete ctx.params
+      return ctx
+   },
 
-       return ctx
+    parseICS : function(str){
+      var self = this
+      var lines = str.split(/\r?\n/)
+
+      var ctx = parseLines(lines);
+      // type and params are added to the list of items, get rid of them.
+      delete ctx.type
+      delete ctx.params
+
+      return ctx;
     }
 
   }
