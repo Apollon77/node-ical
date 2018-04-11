@@ -413,7 +413,7 @@ var UUID = require('node-uuid');
       var self = this
       var lines = str.split(/\r?\n/)
 
-      var ctx = parseLines(lines);
+      var ctx = self.parseLines(lines);
       // type and params are added to the list of items, get rid of them.
       delete ctx.type
       delete ctx.params
