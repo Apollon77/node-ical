@@ -378,10 +378,15 @@ var UUID = require('node-uuid');
       return storeParam(name.toLowerCase())(val, params, ctx);
     },
 
-    parseLines : function(lines){
+    parseLines : function(lines, limit, ctx, stack, cb){
       var self = this
-      var ctx = {}
-      var stack = []
+      if (!cb && typeof ctx === 'function') {
+        cb = ctx;
+        ctx = undefined;
+      }
+      var ctx = ctx || {}
+      var stack = stack || []
+      var limitCounter = 0;
 
       while (lines.length) {
         l=lines.shift();
@@ -404,22 +409,45 @@ var UUID = require('node-uuid');
           , params = kv[1]?kv[1].split(';').slice(1):[]
 
         ctx = self.handleObject(name, value, params, ctx, stack, l) || {}
+        if (++limitCounter > limit) {
+          break;
+        }
       }
 
-      return ctx
+      if (!lines.length) {
+        // type and params are added to the list of items, get rid of them.
+        delete ctx.type;
+        delete ctx.params;
+      }
+
+      if (cb) {
+          if (lines.length) {
+            setTimeout(function() {
+                self.parseLines(lines, limit, ctx, stack, cb);
+            }, 0);
+          }
+          else {
+            cb(ctx);
+          }
+      }
+      else {
+        return ctx
+      }
+
    },
 
-    parseICS : function(str){
+    parseICS : function(str,cb){
       var self = this
       var lines = str.split(/\r?\n/)
+      var ctx;
 
-      var ctx = self.parseLines(lines);
-
-      // type and params are added to the list of items, get rid of them.
-      delete ctx.type
-      delete ctx.params
-
-      return ctx;
+      if (cb) { // asynchronous execution
+        self.parseLines(lines, 100, cb);
+      }
+      else { // synchronous execution
+        ctx = self.parseLines(lines, lines.length);
+        return ctx;
+      }
     }
 
   }
