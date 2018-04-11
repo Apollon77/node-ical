@@ -386,7 +386,7 @@ var UUID = require('node-uuid');
       while (lines.length) {
         l=lines.shift();
         //Unfold : RFC#3.1
-        while (lines[1] && /[ \t]/.test(lines[1][0])) {
+        while (lines[0] && /[ \t]/.test(lines[0][0])) {
           l += lines.shift().slice(1)
         }
 
@@ -414,6 +414,7 @@ var UUID = require('node-uuid');
       var lines = str.split(/\r?\n/)
 
       var ctx = self.parseLines(lines);
+
       // type and params are added to the list of items, get rid of them.
       delete ctx.type
       delete ctx.params
