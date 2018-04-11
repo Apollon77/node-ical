@@ -16,7 +16,7 @@
     "url": "git://github.com/jens-maus/node-ical.git"
   },
   "dependencies": {
-    "request": "812.75.0",
+    "request": "^2.81.0",
     "rrule": "2.1.0",
     "node-uuid": "^1.4.1"
   },
