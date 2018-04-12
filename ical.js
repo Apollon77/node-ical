@@ -389,6 +389,7 @@ var UUID = require('node-uuid');
       var limitCounter = 0;
 
       while (lines.length) {
+          console.log(lines.length);
         l=lines.shift();
         //Unfold : RFC#3.1
         while (lines[0] && /[ \t]/.test(lines[0][0])) {
@@ -413,6 +414,7 @@ var UUID = require('node-uuid');
           break;
         }
       }
+      console.log('DONE: ' + lines.length);
 
       if (!lines.length) {
         // type and params are added to the list of items, get rid of them.
@@ -423,10 +425,12 @@ var UUID = require('node-uuid');
       if (cb) {
           if (lines.length) {
             setTimeout(function() {
+                console.log('next round');
                 self.parseLines(lines, limit, ctx, stack, cb);
             }, 0);
           }
           else {
+              console.log('callback called');
             cb(ctx);
           }
       }
