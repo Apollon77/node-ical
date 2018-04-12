@@ -15,7 +15,10 @@ vows.describe('node-ical').addBatch({
   'when parsing test1.ics (node conferences schedule from lanyrd.com, modified)': {
         topic: function () {
       var self = this;
-      ical.parseFile('./test/test1.ics', this.callback);
+      ical.parseFile('./test/test1.ics', function(ctx) {
+          console.log('callback received: ' + ctx);
+          self.callback(ctx);
+      });
     }
 
     ,'we get 9 events': function (topic) {
