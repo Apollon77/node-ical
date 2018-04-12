@@ -16,7 +16,6 @@ vows.describe('node-ical').addBatch({
         topic: function () {
       var self = this;
       ical.parseFile('./test/test1.ics', function(ctx) {
-          console.log('callback received: ' + ctx);
           self.callback(null, ctx);
       });
     }
@@ -70,12 +69,12 @@ vows.describe('node-ical').addBatch({
           assert.equal(topic.start, "Next Year")
         }
     }
-}/*
+}
   , 'with test2.ics (testing ical features)' : {
     topic: function () {
         var self = this;
             ical.parseFile('./test/test2.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
     }
     , 'todo item uid4@host1.com' : {
@@ -125,7 +124,7 @@ vows.describe('node-ical').addBatch({
     topic: function() {
         var self = this;
         ical.parseFile('./test/test3.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
     }
     , 'event -83' : {
@@ -149,7 +148,7 @@ vows.describe('node-ical').addBatch({
     topic: function() {
         var self = this;
         ical.parseFile('./test/test4.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
     }
     , 'event c32a5...' : {
@@ -198,7 +197,7 @@ vows.describe('node-ical').addBatch({
      topic: function () {
          var self = this;
          ical.parseFile('./test/test5.ics', function(ctx) {
-             self.callback(ctx);
+             self.callback(null, ctx);
          });
       }
     , 'event nsmxnyppbfc@meetup.com' : {
@@ -218,7 +217,7 @@ vows.describe('node-ical').addBatch({
      topic: function () {
          var self = this;
          ical.parseFile('./test/test6.ics', function(ctx) {
-             self.callback(ctx);
+             self.callback(null, ctx);
          });
       }
     , 'event with no ID' : {
@@ -249,7 +248,7 @@ vows.describe('node-ical').addBatch({
     topic: function() {
         var self = this;
         ical.parseFile('./test/test7.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
     },
     'recurring yearly event (14 july)': {
@@ -266,7 +265,7 @@ vows.describe('node-ical').addBatch({
     topic: function() {
         var self = this;
         ical.parseFile('./test/test8.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
     },
     'grabbing VTODO task': {
@@ -283,7 +282,7 @@ vows.describe('node-ical').addBatch({
     topic: function() {
         var self = this;
         ical.parseFile('./test/test9.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
     },
     'grabbing VEVENT task': {
@@ -299,7 +298,7 @@ vows.describe('node-ical').addBatch({
       topic: function() {
           var self = this;
           ical.parseFile('./test/test10.ics', function(ctx) {
-              self.callback(ctx);
+              self.callback(null, ctx);
           });
       },
       'grabbing custom properties': {
@@ -313,7 +312,7 @@ vows.describe('node-ical').addBatch({
     topic: function () {
         var self = this;
         ical.parseFile('./test/test10.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
     },
 
@@ -366,7 +365,7 @@ vows.describe('node-ical').addBatch({
     topic: function () {
         var self = this;
         ical.parseFile('./test/test11.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
     },
 
@@ -414,7 +413,7 @@ vows.describe('node-ical').addBatch({
 	topic: function () {
         var self = this;
         ical.parseFile('./test/test12.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
 	}
     , 'event with rrule': {
@@ -446,7 +445,7 @@ vows.describe('node-ical').addBatch({
   	topic: function () {
         var self = this;
         ical.parseFile('./test/test13.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
   	}
     , 'event with rrule': {
@@ -473,7 +472,7 @@ vows.describe('node-ical').addBatch({
   	topic: function () {
         var self = this;
         ical.parseFile('./test/test14.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
   	}
     , 'quoted params': {
@@ -490,7 +489,7 @@ vows.describe('node-ical').addBatch({
   	topic: function () {
         var self = this;
         ical.parseFile('./test/test15.ics', function(ctx) {
-            self.callback(ctx);
+            self.callback(null, ctx);
         });
   	}
     , 'stringified params': {
@@ -514,7 +513,7 @@ vows.describe('node-ical').addBatch({
         console.log(">E:", err, result)
       }
     }
-}*/
+}
 }).export(module)
 
 
