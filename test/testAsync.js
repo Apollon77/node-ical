@@ -17,7 +17,7 @@ vows.describe('node-ical').addBatch({
       var self = this;
       ical.parseFile('./test/test1.ics', function(ctx) {
           console.log('callback received: ' + ctx);
-          self.callback(ctx);
+          self.callback(null, ctx);
       });
     }
 
