@@ -424,14 +424,16 @@ var UUID = require('node-uuid');
 
       if (cb) {
           if (lines.length) {
-            setTimeout(function() {
+            setImmediate(function() {
                 console.log('next round');
                 self.parseLines(lines, limit, ctx, stack, cb);
-            }, 0);
+            });
           }
           else {
-              console.log('callback called');
-            cb(ctx);
+            setImmediate(function() {
+                console.log('callback called');
+              cb(ctx);
+            });
           }
       }
       else {
