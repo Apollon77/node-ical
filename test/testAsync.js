@@ -15,9 +15,7 @@ vows.describe('node-ical').addBatch({
   'when parsing test1.ics (node conferences schedule from lanyrd.com, modified)': {
         topic: function () {
       var self = this;
-      ical.parseFile('./test/test1.ics', function(ctx) {
-          self.callback(ctx);
-      });
+      ical.parseFile('./test/test1.ics', this.callback);
     }
 
     ,'we get 9 events': function (topic) {
@@ -69,7 +67,7 @@ vows.describe('node-ical').addBatch({
           assert.equal(topic.start, "Next Year")
         }
     }
-  }
+}/*
   , 'with test2.ics (testing ical features)' : {
     topic: function () {
         var self = this;
@@ -513,7 +511,7 @@ vows.describe('node-ical').addBatch({
         console.log(">E:", err, result)
       }
     }
-  }
+}*/
 }).export(module)
 
 
