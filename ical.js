@@ -423,13 +423,11 @@ var UUID = require('node-uuid');
       if (cb) {
           if (lines.length) {
             setImmediate(function() {
-                console.log('next round');
                 self.parseLines(lines, limit, ctx, stack, cb);
             });
           }
           else {
             setImmediate(function() {
-                console.log('callback called');
               cb(ctx);
             });
           }
@@ -446,11 +444,9 @@ var UUID = require('node-uuid');
       var ctx;
 
       if (cb) { // asynchronous execution
-          console.log('ASYNC execution ...');
         self.parseLines(lines, 100, cb);
       }
       else { // synchronous execution
-          console.log('normal sync execution ...');
         ctx = self.parseLines(lines, lines.length);
         return ctx;
       }
