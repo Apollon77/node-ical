@@ -10,6 +10,7 @@ var vows = require('vows')
   , assert = require('assert')
   , _ = require('underscore')
 
+console.log('START Async Tests');
 vows.describe('node-ical').addBatch({
   'when parsing test1.ics (node conferences schedule from lanyrd.com, modified)': {
         topic: function () {
