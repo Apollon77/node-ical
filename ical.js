@@ -428,7 +428,7 @@ var UUID = require('node-uuid');
           }
           else {
             setImmediate(function() {
-              cb(ctx);
+              cb(null, ctx);
             });
           }
       }

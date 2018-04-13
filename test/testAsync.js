@@ -15,7 +15,7 @@ vows.describe('node-ical').addBatch({
   'when parsing test1.ics (node conferences schedule from lanyrd.com, modified)': {
         topic: function () {
       var self = this;
-      ical.parseFile('./test/test1.ics', function(ctx) {
+      ical.parseFile('./test/test1.ics', function(err, ctx) {
           self.callback(null, ctx);
       });
     }
@@ -73,7 +73,7 @@ vows.describe('node-ical').addBatch({
   , 'with test2.ics (testing ical features)' : {
     topic: function () {
         var self = this;
-            ical.parseFile('./test/test2.ics', function(ctx) {
+            ical.parseFile('./test/test2.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
     }
@@ -123,7 +123,7 @@ vows.describe('node-ical').addBatch({
   , 'with test3.ics (testing tvcountdown.com)' : {
     topic: function() {
         var self = this;
-        ical.parseFile('./test/test3.ics', function(ctx) {
+        ical.parseFile('./test/test3.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
     }
@@ -147,7 +147,7 @@ vows.describe('node-ical').addBatch({
   , 'with test4.ics (testing tripit.com)' : {
     topic: function() {
         var self = this;
-        ical.parseFile('./test/test4.ics', function(ctx) {
+        ical.parseFile('./test/test4.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
     }
@@ -196,7 +196,7 @@ vows.describe('node-ical').addBatch({
   , 'with test5.ics (testing meetup.com)' : {
      topic: function () {
          var self = this;
-         ical.parseFile('./test/test5.ics', function(ctx) {
+         ical.parseFile('./test/test5.ics', function(err, ctx) {
              self.callback(null, ctx);
          });
       }
@@ -216,7 +216,7 @@ vows.describe('node-ical').addBatch({
   , 'with test6.ics (testing assembly.org)': {
      topic: function () {
          var self = this;
-         ical.parseFile('./test/test6.ics', function(ctx) {
+         ical.parseFile('./test/test6.ics', function(err, ctx) {
              self.callback(null, ctx);
          });
       }
@@ -247,7 +247,7 @@ vows.describe('node-ical').addBatch({
    , 'with test7.ics (testing dtstart of rrule)' :{
     topic: function() {
         var self = this;
-        ical.parseFile('./test/test7.ics', function(ctx) {
+        ical.parseFile('./test/test7.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
     },
@@ -264,7 +264,7 @@ vows.describe('node-ical').addBatch({
   , "with test 8.ics (VTODO completion)": {
     topic: function() {
         var self = this;
-        ical.parseFile('./test/test8.ics', function(ctx) {
+        ical.parseFile('./test/test8.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
     },
@@ -281,7 +281,7 @@ vows.describe('node-ical').addBatch({
   , "with test 9.ics (VEVENT with VALARM)": {
     topic: function() {
         var self = this;
-        ical.parseFile('./test/test9.ics', function(ctx) {
+        ical.parseFile('./test/test9.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
     },
@@ -297,7 +297,7 @@ vows.describe('node-ical').addBatch({
   , 'with test 11.ics (VEVENT with custom properties)': {
       topic: function() {
           var self = this;
-          ical.parseFile('./test/test10.ics', function(ctx) {
+          ical.parseFile('./test/test10.ics', function(err, ctx) {
               self.callback(null, ctx);
           });
       },
@@ -311,7 +311,7 @@ vows.describe('node-ical').addBatch({
   'with test10.ics': {
     topic: function () {
         var self = this;
-        ical.parseFile('./test/test10.ics', function(ctx) {
+        ical.parseFile('./test/test10.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
     },
@@ -364,7 +364,7 @@ vows.describe('node-ical').addBatch({
   'with test11.ics (testing zimbra freebusy)': {
     topic: function () {
         var self = this;
-        ical.parseFile('./test/test11.ics', function(ctx) {
+        ical.parseFile('./test/test11.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
     },
@@ -412,7 +412,7 @@ vows.describe('node-ical').addBatch({
   , 'with test12.ics (testing recurrences and exdates)': {
 	topic: function () {
         var self = this;
-        ical.parseFile('./test/test12.ics', function(ctx) {
+        ical.parseFile('./test/test12.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
 	}
@@ -444,7 +444,7 @@ vows.describe('node-ical').addBatch({
   , 'with test13.ics (testing recurrence-id before rrule)': {
   	topic: function () {
         var self = this;
-        ical.parseFile('./test/test13.ics', function(ctx) {
+        ical.parseFile('./test/test13.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
   	}
@@ -471,7 +471,7 @@ vows.describe('node-ical').addBatch({
   , 'with test14.ics (testing quoted parameter values)': {
   	topic: function () {
         var self = this;
-        ical.parseFile('./test/test14.ics', function(ctx) {
+        ical.parseFile('./test/test14.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
   	}
@@ -488,7 +488,7 @@ vows.describe('node-ical').addBatch({
   , 'with test15.ics (testing for non-stringified start/end time)': {
   	topic: function () {
         var self = this;
-        ical.parseFile('./test/test15.ics', function(ctx) {
+        ical.parseFile('./test/test15.ics', function(err, ctx) {
             self.callback(null, ctx);
         });
   	}
