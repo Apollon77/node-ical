@@ -388,7 +388,8 @@ var UUID = require('node-uuid');
       var stack = stack || []
       var limitCounter = 0;
 
-      for (var i = lastIndex || 0, ii = lines.length; i<ii; i++){
+      var i = lastIndex || 0
+      for (var ii = lines.length; i<ii; i++){
         l = lines[i]
         //Unfold : RFC#3.1
         while (lines[i+1] && /[ \t]/.test(lines[i+1][0])) {
@@ -424,7 +425,7 @@ var UUID = require('node-uuid');
       if (cb) {
           if (lines.length) {
             setImmediate(function() {
-                self.parseLines(lines, limit, ctx, stack, i, cb);
+                self.parseLines(lines, limit, ctx, stack, i+1, cb);
             });
           }
           else {
