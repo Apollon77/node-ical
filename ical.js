@@ -423,7 +423,7 @@ var UUID = require('node-uuid');
       }
 
       if (cb) {
-          if (lines.length) {
+          if (i >= lines.length) {
             setImmediate(function() {
                 self.parseLines(lines, limit, ctx, stack, i+1, cb);
             });
