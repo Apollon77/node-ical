@@ -446,7 +446,7 @@ var UUID = require('node-uuid');
       var ctx;
 
       if (cb) { // asynchronous execution
-        self.parseLines(lines, 100, cb);
+        self.parseLines(lines, 2000, cb);
       }
       else { // synchronous execution
         ctx = self.parseLines(lines, lines.length);
