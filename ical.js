@@ -390,11 +390,11 @@ var UUID = require('node-uuid');
 
       var i = lastIndex || 0
       for (var ii = lines.length; i<ii; i++){
-        l = lines[i]
+        var l = lines[i]
         //Unfold : RFC#3.1
         while (lines[i+1] && /[ \t]/.test(lines[i+1][0])) {
           l += lines[i+1].slice(1)
-          i += 1
+          i++
         }
 
         var exp = /([^":;]+)((?:;(?:[^":;]+)(?:=(?:(?:"[^"]*")|(?:[^":;]+))))*):(.*)/;
@@ -416,7 +416,7 @@ var UUID = require('node-uuid');
         }
       }
 
-      if (!lines.length) {
+      if (i >= lines.length) {
         // type and params are added to the list of items, get rid of them.
         delete ctx.type;
         delete ctx.params;
