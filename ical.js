@@ -378,7 +378,7 @@ var UUID = require('node-uuid');
       return storeParam(name.toLowerCase())(val, params, ctx);
     },
 
-    parseLines : function(lines, limit, ctx, stack, cb){
+    parseLines : function(lines, limit, ctx, stack, lastIndex, cb){
       var self = this
       if (!cb && typeof ctx === 'function') {
         cb = ctx;
@@ -388,11 +388,12 @@ var UUID = require('node-uuid');
       var stack = stack || []
       var limitCounter = 0;
 
-      while (lines.length) {
-        l=lines.shift();
+      for (var i = lastIndex || 0, ii = lines.length; i<ii; i++){
+        l = lines[i]
         //Unfold : RFC#3.1
-        while (lines[0] && /[ \t]/.test(lines[0][0])) {
-          l += lines.shift().slice(1)
+        while (lines[i+1] && /[ \t]/.test(lines[i+1][0])) {
+          l += lines[i+1].slice(1)
+          i += 1
         }
 
         var exp = /([^":;]+)((?:;(?:[^":;]+)(?:=(?:(?:"[^"]*")|(?:[^":;]+))))*):(.*)/;
@@ -423,7 +424,7 @@ var UUID = require('node-uuid');
       if (cb) {
           if (lines.length) {
             setImmediate(function() {
-                self.parseLines(lines, limit, ctx, stack, cb);
+                self.parseLines(lines, limit, ctx, stack, i, cb);
             });
           }
           else {
